@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  api:
+    container_name: abstract-api
+    build:
+      context: .
+      dockerfile: Dockerfile

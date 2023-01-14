@@ -1,0 +1,61 @@
+{
+  "name": "abstract-zadatak",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "nodemon --exec 'node -r tsconfig-paths/register -r ts-node/register src/main.ts'",
+    "dev:debug": "nodemon --exec 'node --inspect-brk -r tsconfig-paths/register -r ts-node/register src/main.ts'",
+    "build": "rm -rf dist && tsc",
+    "format": "prettier --write \"{src,test}/**/*.ts\"",
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:cov": "jest --coverage",
+    "test:int": "jest --config test/integration/jest-integration.json",
+    "test:debug:int": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config test/integration/jest-integration.json"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.2.1",
+    "@nestjs/core": "^9.2.1",
+    "@nestjs/platform-express": "^9.2.1",
+    "lodash": "^4.17.21",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.0"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^9.2.1",
+    "@types/jest": "^29.2.5",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.3.1",
+    "js-doc": "^0.5.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.2",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.4",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.2",
+    "typescript": "^4.9.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../test/coverage",
+    "testEnvironment": "node"
+  }
+}
