@@ -1,10 +1,9 @@
 version: '3.9'
 services:
   api:
-    container_name: abstract-api
+    container_name: abstract-test
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile
-      target: production
-    ports:
-      - "80:3000"
+      target: test

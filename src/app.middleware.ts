@@ -8,7 +8,7 @@ import { NextFunction, Request as ExpressRequest, Response } from 'express';
 import { Role } from './user/user.interface';
 import { RubacService } from './rubac/rubac.service';
 import { UserService } from './user/user.service';
-import { RequestFormatter, UserFormatter } from "./app.format";
+import { RequestFormatter, UserFormatter } from "./app.formater";
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {

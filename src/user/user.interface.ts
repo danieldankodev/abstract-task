@@ -3,7 +3,3 @@ export enum Role {
   ADMIN = 'ADMIN',
   SUPER_ADMIN = 'SUPER_ADMIN',
 }
-
-export interface User {
-  getRole: () => Role;
-}

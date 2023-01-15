@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Request } from './rubac.interface';
-import { Role, User } from '../user/user.interface';
+import { Role } from '../user/user.interface';
+import { User, Request } from '../app.interface';
 
 @Injectable()
 export class RubacService {

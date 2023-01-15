@@ -1,7 +1,7 @@
-import { Role, User } from "./user/user.interface";
-import { Request } from "./rubac/rubac.interface";
+import { Request, User } from "./app.interface";
+import { Role } from "./user/user.interface";
 
-export class RequestFormatter implements Request{
+export class RequestFormatter implements Request {
     constructor(private ipAddress: string, private baseUrl: string) {}
 
     public getPath() {
