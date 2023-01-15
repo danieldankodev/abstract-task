@@ -33,10 +33,7 @@ export class RubacService {
     const userRole = user.getRole();
     const ipAddress = request.getIpAddress();
     if (RubacService.ALL_ADMIN_ROLES.includes(userRole)) {
-      if (
-        ipAddress === RubacService.ADMIN_IP &&
-        userRole === Role.ADMIN
-      ) {
+      if (ipAddress === RubacService.ADMIN_IP && userRole === Role.ADMIN) {
         return true;
       }
 

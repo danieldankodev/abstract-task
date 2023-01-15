@@ -18,24 +18,24 @@ describe('RubacService', () => {
     getPath: () => 'admin',
   };
   mockedRequest.getIpAddress
-      .mockReturnValueOnce('127.0.0.1')
-      .mockReturnValueOnce('127.0.0.1')
-      .mockReturnValueOnce('100.100.100.1')
-      .mockReturnValueOnce('100.100.100.1')
-      .mockReturnValueOnce('100.100.100.100')
-      .mockReturnValueOnce('100.100.100.200');
+    .mockReturnValueOnce('127.0.0.1')
+    .mockReturnValueOnce('127.0.0.1')
+    .mockReturnValueOnce('100.100.100.1')
+    .mockReturnValueOnce('100.100.100.1')
+    .mockReturnValueOnce('100.100.100.100')
+    .mockReturnValueOnce('100.100.100.200');
 
   const mockedUser = {
     getRole: jest.fn(),
   };
 
   mockedUser.getRole
-      .mockReturnValueOnce(Role.BASIC)
-      .mockReturnValueOnce(Role.SUPER_ADMIN)
-      .mockReturnValueOnce(Role.SUPER_ADMIN)
-      .mockReturnValueOnce(Role.ADMIN)
-      .mockReturnValueOnce(Role.ADMIN)
-      .mockReturnValueOnce(Role.ADMIN);
+    .mockReturnValueOnce(Role.BASIC)
+    .mockReturnValueOnce(Role.SUPER_ADMIN)
+    .mockReturnValueOnce(Role.SUPER_ADMIN)
+    .mockReturnValueOnce(Role.ADMIN)
+    .mockReturnValueOnce(Role.ADMIN)
+    .mockReturnValueOnce(Role.ADMIN);
 
   describe('Basic user', () => {
     it('should not gain access (both workflows)', () => {
