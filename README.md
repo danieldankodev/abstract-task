@@ -61,7 +61,7 @@ $ curl http://localhost:80/admin/setting -H "user-id: 1" -H "x-forwarded-for: 10
 
 ***user-id = 3 or no id*** returns ***BASIC role***
 
-##Application behavior 
+### Application behavior 
 
 If RubacService grants access to url (returns value true)
 Response will be 'Hello world!' with status 200.
