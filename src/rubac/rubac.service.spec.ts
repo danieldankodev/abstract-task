@@ -31,11 +31,11 @@ describe('RubacService', () => {
 
   mockedUser.getRole
       .mockReturnValueOnce(Role.BASIC)
-      .mockReturnValueOnce(Role.ADMIN)
-      .mockReturnValueOnce(Role.ADMIN)
       .mockReturnValueOnce(Role.SUPER_ADMIN)
       .mockReturnValueOnce(Role.SUPER_ADMIN)
-      .mockReturnValueOnce(Role.SUPER_ADMIN);
+      .mockReturnValueOnce(Role.ADMIN)
+      .mockReturnValueOnce(Role.ADMIN)
+      .mockReturnValueOnce(Role.ADMIN);
 
   describe('Basic user', () => {
     it('should not gain access (both workflows)', () => {

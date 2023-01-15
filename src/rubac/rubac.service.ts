@@ -5,7 +5,7 @@ import { User, Request } from '../app.interface';
 @Injectable()
 export class RubacService {
   private static ALL_ADMIN_ROLES = [Role.ADMIN, Role.SUPER_ADMIN];
-  private static SUPER_ADMIN_IP = '100.100.100.100';
+  private static ADMIN_IP = '100.100.100.100';
   private static ADMIN_IP_RANGE = '100.100.100.1/28';
 
   private static isIpAllowedForAdmin(valueToFind: string) {
@@ -34,8 +34,8 @@ export class RubacService {
     const ipAddress = request.getIpAddress();
     if (RubacService.ALL_ADMIN_ROLES.includes(userRole)) {
       if (
-        ipAddress === RubacService.SUPER_ADMIN_IP &&
-        userRole === Role.SUPER_ADMIN
+        ipAddress === RubacService.ADMIN_IP &&
+        userRole === Role.ADMIN
       ) {
         return true;
       }
