@@ -2,8 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-describe('AppController', () => {
-  let appController: AppController;
+describe('AppService', () => {
   let appService: AppService;
 
   beforeEach(async () => {
@@ -12,15 +11,12 @@ describe('AppController', () => {
       providers: [AppService],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
     appService = app.get<AppService>(AppService);
   });
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      const result = 'Hello World!';
-      jest.spyOn(appService, 'getHello').mockImplementation(() => result);
-      expect(appController.getHello()).toBe('Hello World!');
+      expect(appService.getHello()).toBe('Hello World!');
     });
   });
 });

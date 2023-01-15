@@ -8,6 +8,7 @@ import { NextFunction, Request as ExpressRequest, Response } from 'express';
 import { Role } from './user/user.interface';
 import { RubacService } from './rubac/rubac.service';
 import { UserService } from './user/user.service';
+import { RequestFormatter, UserFormatter } from "./app.format";
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -17,15 +18,16 @@ export class AuthMiddleware implements NestMiddleware {
   ) {}
 
   private extractData(expressRequest: ExpressRequest) {
-    const { 'user-id': userId, 'x-forwarded-for': ipAddress  } = expressRequest.headers;
-    const user = this.userService.getUserById(parseInt(userId));
+    const userId: string | undefined =
+      expressRequest.headers['user-id'];
+    const ipAddress: string =
+        expressRequest.headers['x-forwarded-for'];
+    const user = userId && this.userService.getUserById(parseInt(userId));
+
 
     return {
-      request: {
-        getIpAddress: () => ipAddress,
-        getPath: () => expressRequest.baseUrl,
-      },
-      user: { getRole: () => user?.role || Role.BASIC },
+      request: new RequestFormatter(ipAddress || '0.0.0.0', expressRequest.baseUrl),
+      user: new UserFormatter(user?.role || Role.BASIC),
     };
   }
 

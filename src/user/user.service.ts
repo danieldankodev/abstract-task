@@ -3,7 +3,7 @@ import { Role } from './user.interface';
 
 @Injectable()
 export class UserService {
-  private static USERS = [
+  static USERS = [
     { id: 1, role: Role.SUPER_ADMIN },
     { id: 2, role: Role.ADMIN },
     { id: 3, role: Role.BASIC },
