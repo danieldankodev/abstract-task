@@ -2,12 +2,6 @@ FROM node:18-alpine
 
 USER node
 
-
-###################
-# BUILD FOR PRODUCTION
-###################
-FROM node:18-alpine As build
-
 WORKDIR /usr/src/app
 
 COPY --chown=node:node package.json ./
