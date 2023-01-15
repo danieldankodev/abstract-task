@@ -2,6 +2,7 @@
   "name": "abstract-zadatak",
   "version": "1.0.0",
   "main": "main.ts",
+  "license": "UNLICENCED",
   "scripts": {
     "dev": "nodemon --exec 'node -r tsconfig-paths/register -r ts-node/register src/main.ts'",
     "dev:debug": "nodemon --exec 'node --inspect-brk -r tsconfig-paths/register -r ts-node/register src/main.ts'",
@@ -54,6 +55,10 @@
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"
+    ],
+    "coveragePathIgnorePatterns": [
+      ".module.ts",
+      "main.ts"
     ],
     "coverageDirectory": "../test/coverage",
     "testEnvironment": "node"
