@@ -12,6 +12,9 @@ import { UserModule } from './user/user.module';
 })
 export class AppModule {
   public configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes('admin/*');
+    consumer.apply(AuthMiddleware)
+        // .forRoutes('admin/*');
+      /** @description Giving rubac service responsibility of applying workflow logic depending on all routes **/
+       .forRoutes('*');
   }
 }
