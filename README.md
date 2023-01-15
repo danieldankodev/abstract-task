@@ -55,9 +55,11 @@ Here is an example:
 $ curl http://localhost:80/admin/setting -H "user-id: 1" -H "x-forwarded-for: 100.100.100.1"
 ```
 
-user-id = 1 returns us SUPER_ADMIN role
-user-id = 2 returns us ADMIN role
-user-id = 3 or no id returns BASIC role
+***user-id = 1*** returns us ***SUPER_ADMIN role***
+
+***user-id = 2*** returns us ***ADMIN role***
+
+***user-id = 3 or no id*** returns ***BASIC role***
 
 ##Application behavior 
 
