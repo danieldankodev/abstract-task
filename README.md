@@ -35,12 +35,12 @@ $ docker compose up
 
 ```bash
 # unit tests
-$ docker compose up
+$ docker compose exec api yarn test
 
 # integration tests
-$ docker compose up
+$ docker compose exec api yarn test:int
 
 # test coverage
-$ docker compose up
+$ docker compose exec api yarn test:cov
 ```
 
