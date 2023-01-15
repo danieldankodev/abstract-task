@@ -21,6 +21,7 @@
     "node_modules",
     "test",
     "dist",
+    "workflow.json",
     "**/*spec.ts"
   ],
   "include": [

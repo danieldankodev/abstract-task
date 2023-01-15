@@ -5,5 +5,6 @@ export enum Role {
 }
 
 export interface User {
-  getRole: () => Role;
+  id: number;
+  role: Role;
 }

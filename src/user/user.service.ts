@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Role } from './user.interface';
+import { Role, User } from './user.interface';
 
 @Injectable()
 export class UserService {
-  static USERS = [
+  static USERS: User[] = [
     { id: 1, role: Role.SUPER_ADMIN },
     { id: 2, role: Role.ADMIN },
     { id: 3, role: Role.BASIC },

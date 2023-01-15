@@ -14,7 +14,7 @@ describe('AppService', () => {
     appService = app.get<AppService>(AppService);
   });
 
-  describe('root', () => {
+  describe('getHello()', () => {
     it('should return "Hello World!"', () => {
       expect(appService.getHello()).toBe('Hello World!');
     });
