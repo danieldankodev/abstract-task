@@ -19,6 +19,7 @@
     "@nestjs/common": "^9.2.1",
     "@nestjs/core": "^9.2.1",
     "@nestjs/platform-express": "^9.2.1",
+    "@prisma/client": "^4.8.1",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
@@ -36,6 +37,7 @@
     "js-doc": "^0.5.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.2",
+    "prisma": "^4.8.1",
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.4",
     "ts-node": "^10.9.1",
@@ -57,10 +59,14 @@
       "**/*.(t|j)s"
     ],
     "coveragePathIgnorePatterns": [
+      "prisma.service.ts",
       ".module.ts",
       "main.ts"
     ],
     "coverageDirectory": "../test/coverage",
     "testEnvironment": "node"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

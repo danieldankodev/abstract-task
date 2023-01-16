@@ -1,15 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { Role, User } from './user.interface';
+import { PrismaService } from '../prisma/prisma.service';
+import { PrismaRole, PrismaUser, Role, User } from "./user.interface";
 
 @Injectable()
 export class UserService {
-  static USERS: User[] = [
-    { id: 1, role: Role.SUPER_ADMIN },
-    { id: 2, role: Role.ADMIN },
-    { id: 3, role: Role.BASIC },
-  ];
+  constructor(private prismaService: PrismaService) {
+  }
+  private static formatUser(user: PrismaUser & { role: PrismaRole }): User {
+    return {
+      id: user.id,
+      role: user.role.name as Role,
+    }
+  }
 
-  public getUserById(userId: number) {
-    return UserService.USERS.find(({ id }) => id === userId);
+  public async getUserById(userId: number) {
+    const dbUser = await this.prismaService.user.findUnique({ where: { id: userId }, include: { role: true } })
+    if (dbUser) {
+      return UserService.formatUser(dbUser)
+    }
+    return null;
   }
 }

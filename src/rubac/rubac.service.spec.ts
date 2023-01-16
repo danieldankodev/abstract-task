@@ -39,6 +39,14 @@ describe('RubacService', () => {
       request: { getPath, getIpAddress: () => '100.100.100.200' },
       user: { getRole: () => Role.ADMIN },
     },
+    {
+      request: { getPath: () => '/profile', getIpAddress: () => undefined },
+      user: { getRole: () => undefined },
+    },
+    {
+      request: { getPath: () => '', getIpAddress: () => undefined },
+      user: { getRole: () => undefined },
+    },
   ];
 
   describe('Basic user', () => {
@@ -79,4 +87,22 @@ describe('RubacService', () => {
       ).toBe(false);
     });
   });
+
+  describe('Every user', () => {
+    it('should gain access to profile page', () => {
+      expect(
+          rubacService.checkPermission(mockedData[6].user, mockedData[6].request),
+      ).toBe(true);
+    });
+  });
+
+  describe('Every user', () => {
+    it('should gain access to profile page', () => {
+      expect(
+          rubacService.checkPermission(mockedData[6].user, mockedData[6].request),
+      ).toBe(true);
+    });
+  });
+
+
 });

@@ -28,8 +28,20 @@ $ docker compose build --no-cache
 ```bash
 # starting container for already created image
 $ docker compose up -d
-
 ```
+
+After running containers we need to run migrations and seeds in database
+
+```bash
+# running database migrations
+$ docker compose exec api yarn prisma migrate dev
+```
+
+```bash
+# running database seeds
+$ docker compose exec api yarn prisma db seed
+```
+You are now ready to use application.
 
 ## Running tests
 

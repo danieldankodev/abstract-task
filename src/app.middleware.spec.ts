@@ -34,8 +34,7 @@ describe('AuthMiddleware', () => {
   describe('Extract rubac service arguments', () => {
     it('Formatted data should contain', async () => {
       jest
-        .spyOn(userService, 'getUserById')
-        .mockImplementation(() => ({ id: 1, role: Role.SUPER_ADMIN }));
+        .spyOn(userService, 'getUserById').mockResolvedValue({ id: 1, role: Role.SUPER_ADMIN });
       const checkPermission = jest.fn();
       jest
         .spyOn(rubacService, 'checkPermission')
@@ -45,6 +44,26 @@ describe('AuthMiddleware', () => {
       expect(methodArguments[0].getRole()).toBe(Role.SUPER_ADMIN);
       expect(methodArguments[1].getIpAddress()).toContain('100.100.100.100');
       expect(methodArguments[1].getPath()).toContain('admin/profile');
+    });
+  });
+
+  describe('Extract rubac service arguments', () => {
+    it('To go to default values', async () => {
+      const mockerReq = {
+        headers: {},
+        baseUrl: 'admin/profile',
+      };      jest
+          .spyOn(userService, 'getUserById').mockResolvedValue(undefined);
+      const checkPermission = jest.fn();
+      jest
+          .spyOn(rubacService, 'checkPermission')
+          .mockImplementation(checkPermission);
+
+
+      await authMiddleware.use(mockerReq, res, next);
+      const methodArguments = checkPermission.mock.calls[0];
+      expect(methodArguments[0].getRole()).toBe(undefined);
+      expect(methodArguments[1].getIpAddress()).toContain('0.0.0.0');
     });
   });
 

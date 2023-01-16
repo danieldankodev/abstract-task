@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Request, WorkFlow } from './rubac.interface';
+import { Operations, Request, Variables, WorkFlow } from './rubac.interface';
 import { Role } from '../user/user.interface';
 import * as fs from 'fs';
 import { RequestFormatter, UserFormatter } from '../app.interfface';
@@ -54,8 +54,15 @@ export class RubacService {
     return valuesToSearchFrom.includes(valueToFind);
   }
 
-  private static parseExpression(expression: string, variables) {
-    const operations = {
+  /**
+   * @description Method modifies expression and exutetes its code
+   * @param { string } expression
+   * @param { Variables } variables
+   * @return { boolean }
+   * @private
+   */
+  private static parseExpression(expression: string, variables: Variables) {
+    const operations: Operations = {
       ip_range: this.isIpInRange,
       in: this.isRoleIncluded,
     };
@@ -114,6 +121,12 @@ export class RubacService {
     return executedCodeValue;
   }
 
+  /**
+   * @description Method Filters workflows with matching path
+   * @param { Request } request
+   * @return { WorkFlow[] }
+   * @private
+   */
   private findWorkflowsTriggeredByPath(request: Request) {
     const buffer = fs.readFileSync('./workflow.json', 'utf-8');
     const workflowCollection: WorkFlow[] = JSON.parse(buffer);
@@ -130,12 +143,20 @@ export class RubacService {
     });
   }
 
+  /**
+   * @description Method returns if workflow rules are met
+   * @param { WorkFlow } workflow
+   * @param { UserFormatter } user
+   * @param { RequestFormatter } request
+   * @return { boolean }
+   * @private
+   */
   private parseWorkflow = (
     { Params, Rules }: WorkFlow,
     user: UserFormatter,
     request: RequestFormatter,
   ) => {
-    const variables = {
+    const variables: Variables = {
       request,
       user,
     };
@@ -156,6 +177,12 @@ export class RubacService {
     return !hasFailedRuleCriteria;
   };
 
+  /**
+   * @description Method returns if permission is granted depending on workflow rules and params
+   * @param { UserFormatter } user
+   * @param { RequestFormatter } request
+   * @return { boolean }
+   */
   public checkPermission(
     user: UserFormatter,
     request: RequestFormatter,
