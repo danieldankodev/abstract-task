@@ -50,8 +50,7 @@ By adding these parameters in header we can test service:
 "user-id" and "x-forwarded-for".
 
 ```bash
-Here is an example:
-# test coverage
+# Here is an example:
 $ curl http://localhost:80/admin/setting -H "user-id: 1" -H "x-forwarded-for: 100.100.100.1"
 ```
 
